@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redis Geolocation Example</title>
+    <!-- Metadatos básicos del documento -->
+    <meta charset="UTF-8"> <!-- Establece el conjunto de caracteres utilizado -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Configura la compatibilidad con Internet Explorer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Asegura que el diseño sea responsive en dispositivos móviles -->
+    <title>Redis Geolocation Example</title> <!-- Título de la página que se muestra en la pestaña del navegador -->
 </head>
 <body>
-    <h1>Redis Geolocation</h1>
-    <form id="add-location-form">
-        <input type="text" id="name" placeholder="Name" required>
-        <input type="number" id="latitude" placeholder="Latitude" required step="any">
-        <input type="number" id="longitude" placeholder="Longitude" required step="any">
-        <button type="submit">Add Location</button>
-    </form>
+<!-- Encabezado principal de la página -->
+<h1>Redis Geolocation</h1>
 
-    <script>
-        document.getElementById('add-location-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const latitude = document.getElementById('latitude').value;
-            const longitude = document.getElementById('longitude').value;
+<!-- Formulario para agregar una nueva ubicación -->
+<form id="add-location-form">
+    <!-- Campo de entrada para el nombre de la ubicación -->
+    <input type="text" id="name" placeholder="Name" required> <!-- Campo de texto para ingresar el nombre de la ubicación -->
 
-            try {
-                const response = await fetch('/api/locations/add', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name, latitude, longitude }),
-                });
+    <!-- Campo de entrada para la latitud de la ubicación -->
+    <input type="number" id="latitude" placeholder="Latitude" required step="any"> <!-- Campo numérico para la latitud, acepta decimales -->
 
-                if (response.ok) {
-                    alert('Location added successfully!');
-                } else {
-                    alert('Failed to add location.');
-                }
-            } catch (error) {
-                alert('Error: ' + error.message);
+    <!-- Campo de entrada para la longitud de la ubicación -->
+    <input type="number" id="longitude" placeholder="Longitude" required step="any"> <!-- Campo numérico para la longitud, acepta decimales -->
+
+    <!-- Botón para enviar el formulario y agregar la ubicación -->
+    <button type="submit">Add Location</button>
+</form>
+
+<script>
+    // Agrega un evento al formulario para manejar el envío de datos
+    document.getElementById('add-location-form').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Evita que el formulario se envíe de manera predeterminada y recargue la página
+
+        // Captura los valores de los campos de entrada
+        const name = document.getElementById('name').value;
+        const latitude = document.getElementById('latitude').value;
+        const longitude = document.getElementById('longitude').value;
+
+        try {
+            // Envía una solicitud POST al servidor para agregar la ubicación
+            const response = await fetch('/api/locations/add', {
+                method: 'POST', // Especifica el método HTTP a usar
+                headers: {
+                    'Content-Type': 'application/json', // Define el tipo de contenido como JSON
+                },
+                // Envía los datos del formulario como un objeto JSON
+                body: JSON.stringify({ name, latitude, longitude }),
+            });
+
+            // Verifica la respuesta del servidor y muestra un mensaje correspondiente
+            if (response.ok) {
+                alert('Location added successfully!'); // Muestra una alerta de éxito si la ubicación se agrega correctamente
+            } else {
+                alert('Failed to add location.'); // Muestra una alerta de error si la solicitud falla
             }
-        });
-    </script>
+        } catch (error) {
+            // Maneja cualquier error que ocurra durante la solicitud y muestra un mensaje de error
+            alert('Error: ' + error.message);
+        }
+    });
+</script>
 </body>
 </html>

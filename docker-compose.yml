@@ -1,25 +1,42 @@
-# docker-compose.yml
+# Definición de servicios para la aplicación en Docker Compose
 services:
+  # Servicio Redis
   redis:
+    # Especifica la imagen de Redis que se usará, en este caso la última versión disponible
     image: redis:latest
+    # Nombre del contenedor para el servicio Redis
     container_name: redis-server
+    # Mapeo de puertos: el puerto 6380 del host se mapea al puerto 6379 del contenedor Redis
     ports:
-      # - '6379:6379'
-      - '6380:6379'
+      # - '6379:6379'  # Ejemplo comentado de mapeo de puerto directo
+      - '6380:6379'    # Mapea el puerto del host 6380 al puerto estándar 6379 de Redis dentro del contenedor
+    # Montaje de volúmenes para persistencia de datos y configuración personalizada
     volumes:
+      # Volumen para persistir los datos de Redis fuera del contenedor, manteniéndolos incluso si el contenedor se elimina
       - redis-data:/data
+      # Monta el archivo de configuración local de Redis para sobreescribir la configuración por defecto dentro del contenedor
       - ./redis.conf:/usr/local/etc/redis/redis.conf
+    # Comando para iniciar Redis utilizando el archivo de configuración personalizado
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
 
+  # Servicio de la aplicación Node.js
   app:
+    # Construye la imagen de la aplicación utilizando el Dockerfile en el directorio actual
     build: .
+    # Nombre del contenedor para la aplicación
     container_name: redis-app
+    # Mapeo de puertos: el puerto 3000 del host se mapea al puerto 3000 del contenedor de la aplicación
     ports:
       - '3000:3000'
+    # Montaje de volúmenes para mantener sincronizados los archivos del host con el contenedor
+    # Esto facilita el desarrollo, permitiendo cambios en el código sin necesidad de reconstruir la imagen
     volumes:
       - ./src:/app
+    # Define que la aplicación depende del servicio Redis, asegurando que Redis se inicie antes de la aplicación
     depends_on:
       - redis
 
+# Definición de volúmenes
 volumes:
+  # Volumen para persistencia de datos de Redis
   redis-data:
