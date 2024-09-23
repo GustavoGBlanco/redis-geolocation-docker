@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redis Geolocation Example</title>
+</head>
+<body>
+    <h1>Redis Geolocation</h1>
+    <form id="add-location-form">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="number" id="latitude" placeholder="Latitude" required step="any">
+        <input type="number" id="longitude" placeholder="Longitude" required step="any">
+        <button type="submit">Add Location</button>
+    </form>
+
+    <script>
+        document.getElementById('add-location-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const latitude = document.getElementById('latitude').value;
+            const longitude = document.getElementById('longitude').value;
+
+            try {
+                const response = await fetch('/api/locations/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, latitude, longitude }),
+                });
+
+                if (response.ok) {
+                    alert('Location added successfully!');
+                } else {
+                    alert('Failed to add location.');
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

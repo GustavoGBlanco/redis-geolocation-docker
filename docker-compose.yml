@@ -1,0 +1,25 @@
+# docker-compose.yml
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-server
+    ports:
+      # - '6379:6379'
+      - '6380:6379'
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  app:
+    build: .
+    container_name: redis-app
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
