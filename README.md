@@ -176,7 +176,7 @@ Estos son algunos comandos básicos de Redis que puedes usar para probar y verif
 Para cualquier consulta o soporte adicional, por favor contacta a:
 
 **Nombre:** Gustavo Adolfo García Blanco  
-**Email:** [tuemail@ejemplo.com](mailto:gustavgarcia@me.com)  
+**Email:** [gustavgarcia@me.com](mailto:gustavgarcia@me.com)  
 **LinkedIn:** [Perfil de LinkedIn](https://www.linkedin.com/in/gustavogblanco)
 
 ---
