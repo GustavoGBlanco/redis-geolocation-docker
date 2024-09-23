@@ -6,7 +6,7 @@ Este proyecto es una aplicación Node.js que utiliza Redis para manejar geolocal
 - [Requisitos Previos](#requisitos-previos)
 - [Anatomía del Proyecto](#anatomía-del-proyecto)
 - [Descripción de los Componentes](#descripción-de-los-componentes)
-- [La Estructura del Proyecto y los Patrones de Diseño Utilizados](#la-estructura-del-proyecto-y-los-patrones-de-diseño-utilizados)
+- [Patrones de Arquitectura y Patrones de Diseño Utilizados](#patrones-de-arquitectura-y-los-patrones-de-diseño-utilizados)
     - [Patrones de Arquitectura Utilizados](#patrones-de-arquitectura-utilizados)
     - [Patrones de Diseño Utilizados](#patrones-de-diseño-utilizados)
 - [Configuración del Proyecto](#configuración-del-proyecto)
@@ -69,7 +69,7 @@ redis-geolocation-docker/
     - **utils/**: (Opcional) Puede contener funciones auxiliares como validaciones, manejo de errores o cualquier lógica que sea reutilizable.
 
 
-## La estructura del Proyecto y los Patrones de Diseño Utilizados
+## Patrones de Arquitectura y Patrones de Diseño Utilizados
 
 La estructura actual del proyecto sigue principios de Arquitectura Modular y aplica varios Patrones de Diseño que ayudan a mantener el código organizado, mantenible y escalable. A continuación, se detallan los patrones de arquitectura y diseño utilizados en la estructura del proyecto:
 
