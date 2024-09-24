@@ -1,15 +1,20 @@
-# Dockerfile
+# Usa una imagen base oficial de Node.js
 FROM node:16
+
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar los archivos package.json y package-lock.json antes de instalar dependencias
+# Copia los archivos package.json y package-lock.json al directorio de trabajo
 COPY ./src/package*.json ./
 
-# Instalar dependencias del proyecto
+# Instala las dependencias del proyecto
 RUN npm install
 
-# Copiar el resto del código de la aplicación
-COPY ./src /app
+# Copia el resto del código fuente de la aplicación al contenedor
+COPY ./src ./
 
-# Comando para iniciar el servidor
+# Expone el puerto 3000 para la aplicación
+EXPOSE 3000
+
+# Comando para iniciar la aplicación
 CMD ["node", "server.js"]

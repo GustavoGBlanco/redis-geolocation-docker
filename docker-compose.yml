@@ -31,7 +31,7 @@ services:
     # Montaje de volúmenes para mantener sincronizados los archivos del host con el contenedor
     # Esto facilita el desarrollo, permitiendo cambios en el código sin necesidad de reconstruir la imagen
     volumes:
-      - ./src:/app
+      - ./src:/app/src # Monta solo el código fuente sin sobreescribir node_modules
     # Define que la aplicación depende del servicio Redis, asegurando que Redis se inicie antes de la aplicación
     depends_on:
       - redis
