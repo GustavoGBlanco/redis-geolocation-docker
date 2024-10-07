@@ -122,7 +122,7 @@ La estructura actual del proyecto sigue principios de Arquitectura Modular y apl
 1. **Clonar el repositorio**:
 
    ```bash
-   git clone <URL del repositorio>
+   git clone https://github.com/GustavoGBlanco/redis-geolocation-docker.git
    cd redis-geolocation-docker/src
    ```
 
